@@ -60,31 +60,26 @@ const OUTLETS = [
   {
     name: 'Campus Bites',
     tag: 'Non Veg',
-    hours: '7:00 AM – 9:00 PM',
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAVWubJtBSrNYKDurdXhh-yjJMq-uUncIwRhZuc-oKSoiS4Ylvs1x9xZZxlOf57Q_TqfzUxTQxFIH-TFFAq9mIOYZ2W0R0daJpAVbGBIXqVVGR2Rre4O9Y7sLtvW3g-5GNLJwfFcQ85Xtm3xTVnC97LUz6hKMJi5Cd1_YE5jjch5TlYxQ_UrfIJMfFSK3nLiKWUqTlsCObXg1T0AZidN4_GW70XZLmLZYUC1-sdk_7sihoLHd1Tw57GF58QsEibl1yqtg',
   },
   {
     name: 'Delhi Bites',
     tag: 'North Indian',
-    hours: '8:00 AM – 8:00 PM',
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCREA6y2ayt8NnjcDvUlVqFaIDeMoP25aPJwVNyjZYVcIGVJlT1gd_HpLLxIvctfqd50MQoB0yccnLADtAbXt9Gf6QR8NAPVryP37lg46p5TlF9lhABe-mqlyrayQ-NzflayoABO9LClXjUgmARJ318-jsXOM_PEpUoQf-6ug2CNQDaGhdky0UbVnEWi7Voi86bf4cBW2vQgiBEAXokGDvizia5bTindIBay-b9tzJJZ80v1eJkBNDJv4h0AeFGGHf3sA',
   },
   {
     name: 'Lumina Foods',
     tag: 'Healthy & Café',
-    hours: '7:30 AM – 7:30 PM',
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAy2_EkbT2HLBHa39EsB7X7fYIrVVMkG509Dia_n_abxJnTGhQgECPZgbTUIYfzc5dBeHMrJv7UdaRHztlNsKiN8Oqmx1Pe2hp8jil-G3L9PE9381klkj-zxTXyN_7v6NVpSAuMoLknuYBWcVSF4DJQhI1Y7QVr-mzFjZZvKbFoMDoTGKtGF8D3qHVUuiyOSkK4Lo0UC2G9vSgkXoGZb9TdCTUwzgx4pAux525D2NsknL2MIaOpe_HD_aEORSFNgW-fmg',
   },
   {
     name: 'Annapoorna',
     tag: 'South Indian',
-    hours: '7:00 AM – 9:00 PM',
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAdhfx4fyT4WAZnSD5ui1a7iOr0qoGnRAAnpo3RFKkDUGDo4RYcdzD4-HiN9E5Tdc9khyPVqyu6ntmlVf31aEB_zmo6SQR_Vonq3sdZ77bfqUQF9xUWlcXQelG5KwISlklhp2czll40zWf2R1pUWWoCKFajIInARvNbvrppShewo--eLtFUYL_etsbxMbWrCzYHrbIbs9dHqhYuD-1SEBl09BZsijsRmBKPPjoAdLdbD44_0gV_qejC5itQVZ_4S5WhEg',
   },
   {
     name: 'Zamorine Café',
     tag: 'Café',
-    hours: '9:00 AM – 10:00 PM',
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBI4XOee8V8HgQS_8XmUL9xDjVHFKmFiWbtZAhP1GyuLsM9uJb276NnWLkQuyPxHUf2PKeBcO9dW4567nERwaEt4AFZDY-7KufK21NaNWZNRFbpqH8Lrg8JRYo9vbZUkofuRxzCcup2yNfpwX46tJD4fZb19ib7MSLwO9P5-iM7OFM4E2lhqXiqRoIBv5QYddFzGYGuacqhnNKx0HxodQWTMhkkR8y-xXYYUQ-g23kyjXtXtyUEvEIV_2R60fyAGIHHFg',
   },
 ]
@@ -195,20 +190,20 @@ function Home() {
             <Navbar showCart />
 
       {/* Main Content */}
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-container-padding py-8 overflow-hidden">
+      <main className="flex-grow w-full max-w-[1240px] mx-auto px-container-padding py-8 overflow-hidden">
         {/* Search Bar */}
-        <div className="w-full max-w-[800px] mx-auto mb-6 relative flex gap-3 flex-grow">
+        <div className="w-full max-w-[780px] mx-auto mb-6 relative flex gap-3 flex-grow">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <span className="material-symbols-outlined text-primary">search</span>
           </div>
           <input
-            className="w-full pl-12 pr-4 py-4 rounded-[16px] border-none shadow-sm card-shadow text-body-md focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest"
+            className="w-full pl-12 pr-4 py-3 rounded-[16px] border-none shadow-sm card-shadow text-body-md focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest"
             placeholder="Search meals, cafés, outlets or offers..."
             type="text"
           />
           <div className="relative flex-shrink-0">
             <button
-              className="h-full px-6 flex items-center gap-2 bg-white border-2 border-primary text-primary rounded-[12px] font-bold hover:bg-primary/5 transition-colors"
+              className="h-full px-5 flex items-center gap-2 bg-white border-2 border-primary text-primary rounded-[12px] font-bold hover:bg-primary/5 transition-colors"
               onClick={() => setFilterOpen((o) => !o)}
             >
               <span className="material-symbols-outlined">filter_list</span>
@@ -314,7 +309,7 @@ function Home() {
 
         {/* Hero Section (Carousel) */}
         <section className="relative w-full flex flex-col mb-6">
-          <div className="relative w-full h-[280px] md:h-[320px]">
+          <div className="relative w-full h-[230px] md:h-[250px] lg:h-[270px]">
             {/* Left Arrow */}
             <button
               className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white rounded-full w-10 h-10 shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50 transition"
@@ -360,19 +355,19 @@ function Home() {
         {/* Quick Action Bar */}
         <section className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
           {QUICK_ACTIONS.map((action, index) => {
-            const cardClass = `bg-surface-container-lowest rounded-2xl overflow-hidden flex items-center card-shadow border border-outline-variant/20 hover:-translate-y-1 hover:shadow-lg hover:border-primary/30 transition-all cursor-pointer group ${
+            const cardClass = `bg-surface-container-lowest rounded-2xl overflow-hidden flex items-center min-h-[90px] max-h-[100px] card-shadow border border-outline-variant/20 hover:-translate-y-1 hover:shadow-lg hover:border-primary/30 transition-all cursor-pointer group ${
               index === QUICK_ACTIONS.length - 1 ? 'md:col-span-1 col-span-2' : ''
             }`;
             const card = (
               <>
-                <div className="w-[40%] h-full bg-blue-50/50 flex items-center justify-center overflow-hidden">
+                <div className="w-[38%] h-full bg-blue-50/50 flex items-center justify-center overflow-hidden">
                   <img
                     alt={action.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={action.img}
                   />
                 </div>
-                <div className="p-3 flex-1">
+                <div className="p-2.5 flex-1">
                   <h4 className="font-label-md text-label-md text-primary">{action.title}</h4>
                   <p className="text-[10px] text-on-surface-variant">{action.subtitle}</p>
                 </div>
@@ -391,8 +386,8 @@ function Home() {
         </section>
 
         {/* Today's Menu Highlights */}
-<section className="mt-10 w-full relative">
-          <div className="flex justify-between items-center mb-6">
+<section className="mt-6 w-full relative">
+          <div className="flex justify-between items-center mb-3">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[28px] text-primary">stars</span>
               <h2 className="text-headline-md font-headline-md font-bold" style={{ color: '#003e6f' }}>Today's Menu Highlights</h2>
@@ -412,9 +407,9 @@ function Home() {
                 <Link
                   key={`${item.name}-${index}`}
                   to={`/menu/${item.id}`}
-                  className="w-[calc(66.666vw-16px)] md:w-[calc(33.333vw-24px)] lg:w-[calc(20vw-28px)] flex-shrink-0 bg-surface-container-lowest rounded-[16px] overflow-hidden card-shadow border border-outline-variant/20 hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col cursor-pointer"
+                  className="w-[220px] sm:w-[225px] md:w-[230px] lg:w-[235px] flex-shrink-0 bg-surface-container-lowest rounded-[16px] overflow-hidden card-shadow border border-outline-variant/20 hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col cursor-pointer"
                 >
-                  <div className="relative h-40 overflow-hidden">
+                  <div className="relative h-32 md:h-[135px] overflow-hidden">
                     <img
                       alt={item.name}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
@@ -434,12 +429,12 @@ function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 flex flex-col flex-grow min-h-[140px]">
-                    <h3 className="font-bold text-on-surface mb-1">{item.name}</h3>
-                    <p className="text-[12px] text-on-surface-variant line-clamp-2 mb-auto flex-1">{item.description}</p>
+                  <div className="p-3 flex flex-col flex-grow min-h-[105px]">
+                    <h3 className="text-[14px] font-bold text-on-surface mb-1">{item.name}</h3>
+                    <p className="text-[11px] text-on-surface-variant line-clamp-2 mb-auto flex-1">{item.description}</p>
                     <div className="flex justify-between items-center mt-2">
-                      <span className="font-bold text-primary">{item.price}</span>
-                      <span className="px-4 py-1 rounded-full border border-primary text-primary text-label-sm font-bold transition-colors">
+                      <span className="text-[15px] font-bold text-primary">{item.price}</span>
+                      <span className="px-3 py-1 rounded-full border border-primary text-primary text-label-sm font-bold transition-colors">
                         Add +
                       </span>
                     </div>
@@ -451,8 +446,8 @@ function Home() {
         </section>
 
         {/* Our Canteen Outlets Section */}
-        <section className="mt-10 w-full relative">
-          <div className="flex justify-between items-center mb-6">
+        <section className="mt-6 w-full relative">
+          <div className="flex justify-between items-center mb-3">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[28px] text-primary">storefront</span>
               <h2 className="text-headline-md font-headline-md font-bold" style={{ color: '#003e6f' }}>Our Canteen Outlets</h2>
@@ -472,21 +467,15 @@ function Home() {
               {[...OUTLETS, ...OUTLETS].map((outlet, index) => (
                 <div
                   key={`${outlet.name}-${index}`}
-                  className="w-[calc(66.666vw-16px)] md:w-[calc(33.333vw-24px)] lg:w-[calc(20vw-28px)] flex-shrink-0 bg-surface-container-lowest rounded-[20px] p-4 card-shadow hover:-translate-y-2 hover:shadow-lg transition-all border border-outline-variant/30 flex flex-col cursor-pointer"
+                  className="w-[220px] sm:w-[225px] md:w-[230px] lg:w-[235px] flex-shrink-0 bg-surface-container-lowest rounded-[16px] p-3 card-shadow hover:-translate-y-2 hover:shadow-lg transition-all border border-outline-variant/30 flex flex-col cursor-pointer"
                 >
-                  <div className="relative w-full aspect-square rounded-[16px] overflow-hidden mb-4 bg-surface-container">
+                  <div className="relative w-full h-[140px] md:h-[145px] rounded-[16px] overflow-hidden mb-3 bg-surface-container">
                     <img alt={outlet.name} className="w-full h-full object-cover" src={outlet.img} />
                     <div className="absolute top-3 right-3 bg-secondary text-on-secondary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm">
                       {outlet.tag}
                     </div>
                   </div>
-                  <h3 className="text-headline-sm font-headline-sm text-on-surface mb-1">{outlet.name}</h3>
-                  <div className="flex justify-between items-center mt-auto pt-2 border-t border-outline-variant/20">
-                    <span className="text-[12px] font-bold text-primary flex items-center gap-1">
-                      <span className="text-[8px]">●</span> Open
-                    </span>
-                    <span className="text-[12px] text-on-surface-variant font-medium">{outlet.hours}</span>
-                  </div>
+                  <h3 className="text-[15px] font-semibold text-on-surface">{outlet.name}</h3>
                 </div>
               ))}
             </div>

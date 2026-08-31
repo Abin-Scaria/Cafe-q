@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
+import ProtectedRoute from './routes/ProtectedRoute.jsx'
 import Home from './pages/Home/Home.jsx'
 import MealDetails from './pages/Menu/mealdetails.jsx'
 import FoodDetails from './pages/Menu/fooddetails.jsx'
@@ -17,11 +19,20 @@ import Login from './pages/Auth/Login.jsx'
 function App() {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<MealDetails />} />
-          <Route path="/menu/:id" element={<FoodDetails />} />
+          <Route path="/menu" element={
+            <ProtectedRoute>
+              <MealDetails />
+            </ProtectedRoute>
+          } />
+          <Route path="/menu/:id" element={
+            <ProtectedRoute>
+              <FoodDetails />
+            </ProtectedRoute>
+          } />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/payment" element={<Payment />} />
@@ -34,6 +45,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
+      </AuthProvider>
     </CartProvider>
   )
 }

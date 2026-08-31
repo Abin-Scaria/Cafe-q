@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
+// Local Cafe Q logo (verified location: src/assets/icon.png).
+import cafeIcon from "../assets/icon.png";
 
 /**
  * The ONE shared Cafe Q navigation bar.
@@ -26,11 +28,23 @@ const NAV_ITEMS = [
  */
 const UPCOMING_ITEMS = ["Offers", "Contact"];
 
+/**
+ * Desktop link styles.
+ *
+ * Each item gets a consistent clickable area via symmetric horizontal
+ * padding (px-2). The surrounding nav uses gap-2 (8px) so the text-to-text
+ * spacing stays exactly 24px (8px gap + 2 x 8px padding), i.e. unchanged.
+ *
+ * The active blue indicator is a separate absolutely positioned bar anchored
+ * to the link's box (left:0 / right:0 / bottom:0) rather than a text-width
+ * border, so it always spans the item's full visual area, keeps a consistent
+ * 2px thickness, and sits at the same vertical position for every item.
+ */
 function desktopLinkClass({ isActive }) {
   return [
-    "text-label-md font-label-md transition-colors h-full flex items-center",
+    "relative h-full flex items-center px-2 text-label-md font-label-md transition-colors",
     isActive
-      ? "text-primary font-bold border-b-2 border-primary"
+      ? "text-primary font-bold"
       : "text-on-surface hover:text-primary",
   ].join(" ");
 }
@@ -53,15 +67,12 @@ export default function Navbar({ showCart = false }) {
       <div className="max-w-[1240px] mx-auto px-container-padding h-20 flex items-center justify-between">
         {/* Logo & Brand */}
         <Link to="/" className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-4xl text-primary">coffee</span>
-          <div className="flex flex-col">
-            <span className="text-headline-md font-headline-md font-bold text-primary leading-tight">Cafe Q</span>
-            <span className="text-caption font-caption text-on-surface-variant">Good Food. Great Campus Life.</span>
-          </div>
+          <img src={cafeIcon} alt="Cafe Q logo" className="w-9 h-9 object-contain" />
+          <span className="text-headline-md font-headline-md font-bold text-primary leading-tight">Cafe Q</span>
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden lg:flex items-center gap-6 h-full">
+        <nav className="hidden lg:flex items-center gap-2 h-full">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
@@ -69,13 +80,24 @@ export default function Navbar({ showCart = false }) {
               end={item.end}
               className={desktopLinkClass}
             >
-              {item.label}
+              {({ isActive }) => (
+                <>
+                  {item.label}
+                  {/* Active indicator — spans the item's full visual area at the bottom */}
+                  {isActive && (
+                    <span
+                      className="absolute left-0 right-0 bottom-0 h-[2px] bg-primary"
+                      aria-hidden="true"
+                    />
+                  )}
+                </>
+              )}
             </NavLink>
           ))}
           {UPCOMING_ITEMS.map((label) => (
             <span
               key={label}
-              className="text-label-md font-label-md text-on-surface-variant h-full flex items-center cursor-default"
+              className="text-label-md font-label-md text-on-surface-variant h-full flex items-center px-2 cursor-default"
               title="Coming soon"
             >
               {label}
@@ -103,9 +125,17 @@ export default function Navbar({ showCart = false }) {
               )}
             </Link>
           )}
-          <button className="w-10 h-10 rounded-full bg-primary text-on-primary hidden sm:flex items-center justify-center font-label-md font-bold cursor-pointer" aria-label="Profile">
-            AS
-          </button>
+          {/* Login button — no auth backend exists yet (src/api/authApi.js is
+              empty), so this is the not-signed-in state. Once authentication is
+              wired up, conditionally render the user's profile avatar here
+              instead when they are logged in. */}
+          <Link
+            to="/login"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 h-10 rounded-full bg-primary text-on-primary text-label-md font-label-md font-bold hover:bg-primary/90 transition-colors"
+          >
+            <span className="material-symbols-outlined text-[18px]">login</span>
+            Login
+          </Link>
           {/* Mobile menu toggle */}
           <button
             type="button"
@@ -141,6 +171,13 @@ export default function Navbar({ showCart = false }) {
               {label} — Coming soon
             </span>
           ))}
+          <Link
+            to="/login"
+            onClick={() => setMobileOpen(false)}
+            className="mt-1 block px-4 py-3 rounded-xl bg-primary text-on-primary text-center text-label-md font-label-md font-bold hover:bg-primary/90 transition-colors"
+          >
+            Login
+          </Link>
         </nav>
       )}
     </header>

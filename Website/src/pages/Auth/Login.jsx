@@ -1,16 +1,22 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 // Existing local Cafe Q background (verified: src/pages/Orders/img/bg.png).
 import bgImage from "../Orders/img/bg.png";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 /*
  * Stitch-themed Login page.
  *
- * NOTE: There is no authentication backend yet (src/api/authApi.js is empty).
- * The form below is fully controlled and validated; handleSubmit is the
- * single place to wire the future auth API without touching the UI.
+ * NOTE: There is no authentication backend yet (src/api/authApi.js is empty),
+ * so submitting the form starts a minimal local session via AuthContext
+ * (persisted under the localStorage key "cafeQ_user"). handleSubmit is the
+ * single place to swap this for the future auth API without touching the UI.
  */
 
 function Login() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -23,11 +29,11 @@ function Login() {
       setMessage({ ok: false, text: "Please enter your email/phone and password." });
       return;
     }
-    // TODO: wire to the login endpoint in src/api/authApi.js when available.
-    setMessage({
-      ok: false,
-      text: "Login is not connected to a backend yet. Please try again later.",
-    });
+    // No backend yet — start a local session, then return the user to the page
+    // they originally tried to open (e.g. /menu or /menu/:id) when there is one.
+    login({ email: email.trim() });
+    const from = location.state?.from || "/";
+    navigate(from, { replace: true });
   };
 
   return (
