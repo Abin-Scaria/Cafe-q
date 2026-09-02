@@ -15,6 +15,8 @@ import OrderDetails from './pages/Orders/OrderDetails.jsx'
 import Wallet from './pages/Wallet/Wallet.jsx'
 import AboutUs from './pages/aboutus.jsx'
 import Login from './pages/Auth/Login.jsx'
+import ForgotPassword from './pages/Auth/ForgotPassword.jsx'
+import Register from './pages/Auth/Register.jsx'
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
       </AuthProvider>
