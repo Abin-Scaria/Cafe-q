@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 // Local Cafe Q logo (verified location: src/assets/icon.png).
 import cafeIcon from "../assets/icon.png";
 
@@ -60,6 +61,7 @@ function mobileLinkClass({ isActive }) {
 
 export default function Navbar({ showCart = false }) {
   const { cartItemCount } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -125,17 +127,37 @@ export default function Navbar({ showCart = false }) {
               )}
             </Link>
           )}
-          {/* Login button — no auth backend exists yet (src/api/authApi.js is
-              empty), so this is the not-signed-in state. Once authentication is
-              wired up, conditionally render the user's profile avatar here
-              instead when they are logged in. */}
-          <Link
-            to="/login"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 h-10 rounded-full bg-primary text-on-primary text-label-md font-label-md font-bold hover:bg-primary/90 transition-colors"
-          >
-            <span className="material-symbols-outlined text-[18px]">login</span>
-            Login
-          </Link>
+          {/* Login button / User Profile */}
+          {isAuthenticated ? (
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={logout}
+                className="flex items-center gap-2 px-4 h-10 rounded-full hover:bg-surface-container-high transition-colors text-on-surface"
+                aria-label="Logout"
+              >
+                {user?.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName || user.email}
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="material-symbols-outlined text-[24px]">account_circle</span>
+                )}
+                <span className="text-label-md font-label-md text-on-surface max-w-[120px] truncate">
+                  {user?.displayName || user?.email || 'User'}
+                </span>
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 h-10 rounded-full bg-primary text-on-primary text-label-md font-label-md font-bold hover:bg-primary/90 transition-colors"
+            >
+              <span className="material-symbols-outlined text-[18px]">login</span>
+              Login
+            </Link>
+          )}
           {/* Mobile menu toggle */}
           <button
             type="button"
@@ -171,13 +193,37 @@ export default function Navbar({ showCart = false }) {
               {label} — Coming soon
             </span>
           ))}
-          <Link
-            to="/login"
-            onClick={() => setMobileOpen(false)}
-            className="mt-1 block px-4 py-3 rounded-xl bg-primary text-on-primary text-center text-label-md font-label-md font-bold hover:bg-primary/90 transition-colors"
-          >
-            Login
-          </Link>
+          {isAuthenticated ? (
+            <button
+              onClick={() => {
+                logout();
+                setMobileOpen(false);
+              }}
+              className="mt-1 flex items-center gap-2 px-4 py-3 rounded-xl hover:bg-surface-container-low transition-colors text-on-surface"
+            >
+              {user?.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName || user.email}
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+              ) : (
+                <span className="material-symbols-outlined text-[24px]">account_circle</span>
+              )}
+              <span className="text-label-md font-label-md flex-1 text-left truncate">
+                {user?.displayName || user?.email || 'User'}
+              </span>
+              <span className="text-label-sm text-on-surface-variant">Logout</span>
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setMobileOpen(false)}
+              className="mt-1 block px-4 py-3 rounded-xl bg-primary text-on-primary text-center text-label-md font-label-md font-bold hover:bg-primary/90 transition-colors"
+            >
+              Login
+            </Link>
+          )}
         </nav>
       )}
     </header>
