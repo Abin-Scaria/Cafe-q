@@ -1,9 +1,7 @@
 import { useState, useMemo } from "react";
-import Navbar from "../../components/Navbar.jsx";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { MENU_ITEMS } from "../../data/menuData.js";
 import { useCart } from "../../context/CartContext.jsx";
-
 
 const EXTRAS = [
   { id: "chicken", label: "Extra Chicken Piece", price: 30 },
@@ -18,7 +16,7 @@ const RECOMMENDATIONS = [
     outlet: "Campus Bites",
     price: 140,
     veg: false,
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBTc89a2WyNcTHfwVZAo1AdvTqv_YAn89DYBCpQRrEM7bjCJn5OsMem_CP2yevRvskQjyZKkkLtlYCh68dm1WROcapBpqmagODgs6JIZo4HFW3r7an1e539HwWISHW7OlEi35YnvoM7VOJsqVVAPK59r8pJtT7bpxvmKjmlLBhSJT0C0iGH6BS7O5J1B4HroadSYUShKCM_-bNRSR0SHCL0XmryU1QTIpoaXuCQtNYnnHWi3tRvXcZMuq1hKyn9-Y9aIA"
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBTc89a2WyNcTHfwVZAo1AdvTqv_YAn89DYBCpQRrEM7bjCJn5OsMem_CP2yevRvskQjyZKkkLtlYCh68dm1WROcapBpqmagODgs6JIZo4HFW3r7an1e539HwWISHW7OlEi35YnvoM7VOJsqVVAPK59r8pJtT7bpxvmKjmlLBhSJT0C0iGH6BS7O5J1B4HroadSYUShKCM_-bNRSR0SHCL0XmryU1QTIpoaXuCQtNYnnHWi3tRvXcZMuq1hKyn9-Y9aIA",
   },
   {
     id: "chicken-65",
@@ -26,7 +24,7 @@ const RECOMMENDATIONS = [
     outlet: "Campus Bites",
     price: 80,
     veg: false,
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgjqREMB-ZuFze1H-GmdrKmMy5_OOfOh1viItRj8X58wKeItTAhyZwlH448DlSp-wEF5tX39_5kegSnKtPGBgMLVBgl0W_ER4uSSkE-2L8vhHbWtE-GYFBDd4MdZMlOjFvVX6H-_RFdoXdZpYGxosFbzA6qggjPBGV3DPYhmXBA_-VjDh3tW6V5jZBAUgteHjD32yxzETPHAEMz50SZ8QITG0lCcBmsf4xnp-erDYhx1iwXYzOs_7mxZhrciLTUJJUxQ"
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgjqREMB-ZuFze1H-GmdrKmMy5_OOfOh1viItRj8X58wKeItTAhyZwlH448DlSp-wEF5tX39_5kegSnKtPGBgMLVBgl0W_ER4uSSkE-2L8vhHbWtE-GYFBDd4MdZMlOjFvVX6H-_RFdoXdZpYGxosFbzA6qggjPBGV3DPYhmXBAUgteHjD32yxzETPHAEMz50SZ8QITG0lCcBmsf4xnp-erDYhx1iwXYzOs_7mxZhrciLTUJJUxQ",
   },
   {
     id: "paneer-butter-masala",
@@ -34,7 +32,7 @@ const RECOMMENDATIONS = [
     outlet: "Lumina Foods",
     price: 85,
     veg: true,
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDxP3uiY4f-qX-qwrBOCCec_SDp0jqRvIgUGAhkAXijfrSR98xipdB56slf-JsvJiw2C9-eksejPPzzN6tquEf6QS2jIpXOEud8NbF8R9YTpuQExmKmTzodBpYyYeRHgdtHyOOSmpZppvmzsc0nB_WlT28OF73LnKCIrlouR8xkCYOFwg1sbp6vc8gkwMFMH6DHQaPggfUypXhODHAutYsD3WpYx4SOFBZ7rrEELqyVqfVpyYQI7aNz8aopAlgFuYlfA"
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDxP3uiY4f-qX-qwrBOCCec_SDp0jqRvIgUGAhkAXijfrSR98xipdB56slf-JsvJiw2C9-eksejPPzzN6tquEf6QS2jIpXOEud8NbF8R9YTpuQExmKmTzodBpYyYeRHgdtHyOOSmpZppvmzsc0nB_WlT28OF73LnKCIrlouR8xkCYOFwg1sbp6vc8gkwMFMH6DHQaPggfUypXhODHAutYsD3WpYx4SOFBZ7rrEELqyVqfVpyYQI7aNz8aopAlgFuYlfA",
   },
   {
     id: "veg-pulao",
@@ -42,7 +40,7 @@ const RECOMMENDATIONS = [
     outlet: "Annapoorna",
     price: 60,
     veg: true,
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCkS0_L5RwWk4qOq6vxvMYCNvqH0UMPzQi4Yp3vSaQWy71Hfxw0L1WMDsUlEJ5NZgBNM5i9yZx8wRc_zx6OsWs8mwOQhPrP7EWq7_bGRy0HYqQ_2Y5VQ0HqX8sKR8Qh9xY1NqQ3w0L5M7Y8sKR9Qq"
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCkS0_L5RwWk4qOq6vxvMYCNvqH0UMPzQi4Yp3vSaQWy71Hfxw0L1WMDsUlEJ5NZgBNM5i9yZx8wRc_zx6OsWs8mwOQhPrP7EWq7_bGRy0HYqQ3w0L5M7Y8sKR9Qq",
   }
 ];
 
@@ -140,10 +138,6 @@ function FoodDetailsContent({ id }) {
 
   return (
     <div className="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
-      {/* TopNavBar */}
-            {/* Shared Cafe Q Navbar */}
-            <Navbar showCart />
-
       <main className="w-full max-w-[1440px] mx-auto px-container-padding py-6">
         {/* Breadcrumb */}
         <nav className="flex items-center text-sm text-on-surface-variant mb-4 gap-2">
@@ -169,13 +163,20 @@ function FoodDetailsContent({ id }) {
                 src={item.img}
               />
               <div className="absolute top-4 left-4 bg-secondary/80 backdrop-blur-sm text-on-secondary px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1">
-                <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>{item.badge ? "stars" : "restaurant"}</span>
-                {item.badge || (item.veg ? "Veg" : "Non-Veg")}
+                {item.badge ? (
+                  <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
+                    stars
+                  </span>
+                ) : (
+                  <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>restaurant</span>
+                )}
+                <span className="text-sm font-bold">{item.badge || (item.veg ? "Veg" : "Non-Veg")}</span>
               </div>
               <button
                 onClick={() => setIsFavorite(!isFavorite)}
                 className="absolute top-4 right-4 w-10 h-10 bg-white shadow-sm hover:text-error rounded-full flex items-center justify-center transition-colors"
                 style={{ color: isFavorite ? '#ba1a1a' : '#727780' }}
+                aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
               >
                 <span className="material-symbols-outlined" style={{ fontVariationSettings: isFavorite ? "'FILL' 1" : "'FILL' 0" }}>
                   favorite
@@ -201,12 +202,10 @@ function FoodDetailsContent({ id }) {
               </div>
             </div>
 
-            <div className="text-4xl font-bold text-secondary mb-3">₹{portions[selectedPortion].price}</div>
+            <div className="text-4xl font-bold text-secondary mb-3">{item.price}</div>
 
             <p className="text-base text-on-surface-variant mb-4 leading-snug">
-              {item.description ||
-                item.desc ||
-                `Freshly prepared ${item.name}, served hot from the campus outlet.`}
+              {item.description || item.desc || `Freshly prepared ${item.name}, served hot from the campus outlet.`}
             </p>
 
             <div className="grid grid-cols-2 gap-x-4 gap-y-3 mb-6 p-3 bg-surface-container-low rounded-2xl border border-outline-variant">
@@ -353,7 +352,11 @@ function FoodDetailsContent({ id }) {
                 className="group bg-surface rounded-2xl shadow-sm border border-outline-variant overflow-hidden flex flex-col cursor-pointer hover:-translate-y-1 transition-transform duration-300"
               >
                 <div className="relative h-36 overflow-hidden">
-                  <img alt={item.name} className="w-full h-full object-cover" src={item.img} />
+                  <img
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                    src={item.img}
+                  />
                   <div className="absolute top-2 right-2 w-5 h-5 rounded bg-white shadow-sm flex items-center justify-center">
                     {item.veg ? (
                       <div className="w-2.5 h-2.5 rounded-full bg-green-600"></div>
